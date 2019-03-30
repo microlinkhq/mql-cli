@@ -1,0 +1,112 @@
+{
+  "name": "@microlink/mql-cli",
+  "description": "CLI for interacting with Microlink Query Language",
+  "homepage": "https://nicedoc.io/microlinkhq/mql-cli",
+  "version": "0.0.0",
+  "bin": {
+    "mql": "./bin/index.js"
+  },
+  "author": {
+    "email": "josefrancisco.verdu@gmail.com",
+    "name": "Kiko Beats",
+    "url": "https://github.com/Kikobeats"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/microlinkhq/mql.git"
+  },
+  "bugs": {
+    "url": "https://github.com/microlinkhq/mql/issues"
+  },
+  "files": [
+    "bin",
+    "examples"
+  ],
+  "keywords": [
+    "api",
+    "language",
+    "microlink",
+    "mql",
+    "query",
+    "cli"
+  ],
+  "devDependencies": {
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "@microlink/mql": "latest",
+    "beauty-error": "latest",
+    "chalk": "latest",
+    "ci-publish": "latest",
+    "clipboardy": "latest",
+    "conventional-github-releaser": "latest",
+    "eachdir": "latest",
+    "exists-file": "latest",
+    "finepack": "latest",
+    "git-authors-cli": "latest",
+    "git-dirty": "latest",
+    "gradient-string": "latest",
+    "husky": "latest",
+    "indent-string": "latest",
+    "jsome": "latest",
+    "lint-staged": "latest",
+    "lodash": "latest",
+    "meow": "latest",
+    "npm-check-updates": "latest",
+    "object-sizeof": "latest",
+    "prettier-standard": "latest",
+    "pretty-bytes": "latest",
+    "pretty-ms": "latest",
+    "standard": "latest",
+    "standard-version": "latest",
+    "terminal-link": "latest",
+    "time-span": "latest",
+    "update-notifier": "latest"
+  },
+  "engines": {
+    "node": ">= 8"
+  },
+  "preferGlobal": true,
+  "scripts": {
+    "clean": "rm -rf node_modules",
+    "lint": "standard",
+    "postrelease": "npm run release:tags && npm run release:github && ci-publish",
+    "precommit": "lint-staged",
+    "prerelease": "npm run update:check && git-authors-cli",
+    "pretest": "npm run lint",
+    "release": "git add package.json && standard-version -a",
+    "release:github": "conventional-github-releaser -p angular",
+    "release:tags": "git push --follow-tags origin HEAD:master",
+    "test": "exit 0",
+    "update": "ncu -a",
+    "update:check": "ncu -- --error-level 2"
+  },
+  "license": "MIT",
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "package.json": [
+        "finepack",
+        "git add"
+      ],
+      "*.js,!*.min.js": [
+        "prettier-standard",
+        "git add"
+      ]
+    }
+  },
+  "standard-version": {
+    "scripts": {
+      "prechangelog": "git-authors-cli"
+    }
+  }
+}
