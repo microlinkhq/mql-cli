@@ -4,6 +4,8 @@
 
 ## Install
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/microlinkhq/mql-cli.svg)](https://greenkeeper.io/)
+
 ```bash
 npm install @microlink/mql-cli --global
 ```
