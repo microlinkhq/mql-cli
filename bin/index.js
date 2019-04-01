@@ -63,7 +63,7 @@ main()
       console.log(
         `   ${pink('source:')} ${terminalLink(
           `examples/${cli.input[0]}`,
-          `https://github.com/microlinkhq/mql/tree/master/examples/${
+          `https://github.com/microlinkhq/mql-cli/tree/master/examples/${
             cli.input[0]
           }`
         )}`
