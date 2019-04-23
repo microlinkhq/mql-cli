@@ -31,6 +31,9 @@ const exitOnError = err => {
   process.exit(1)
 }
 
+const createTerminalLink = (text, link) =>
+  terminalLink(text, link, { fallback: () => link })
+
 const main = async () => {
   const [exampleName] = cli.input
 
@@ -59,15 +62,15 @@ main()
     jsome(data)
 
     if (!cli.flags.quiet) {
-      console.log(`\n  `, gradient('Microlink Query Language'), '\n')
-      console.log(
-        `   ${pink('source:')} ${terminalLink(
-          `examples/${cli.input[0]}`,
-          `https://github.com/microlinkhq/mql-cli/tree/master/examples/${
-            cli.input[0]
-          }`
-        )}`
+      const sourceLink = createTerminalLink(
+        `examples/${cli.input[0]}`,
+        `https://github.com/microlinkhq/mql-cli/tree/master/examples/${
+          cli.input[0]
+        }`
       )
+
+      console.log(`\n  `, gradient('Microlink Query Language'), '\n')
+      console.log(`   ${pink('source:')} ${sourceLink}`)
       console.log(`   ${pink('status:')} success`)
       console.log(`     ${pink('size:')} ${prettyBytes(sizeof(data))}`)
       console.log(`     ${pink('time:')} ${prettyMs(time)}`)
