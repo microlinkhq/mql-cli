@@ -18,17 +18,13 @@
   "bugs": {
     "url": "https://github.com/microlinkhq/mql/issues"
   },
-  "files": [
-    "bin",
-    "examples"
-  ],
   "keywords": [
     "api",
+    "cli",
     "language",
     "microlink",
     "mql",
-    "query",
-    "cli"
+    "query"
   ],
   "devDependencies": {
     "@commitlint/cli": "latest",
@@ -65,7 +61,10 @@
   "engines": {
     "node": ">= 8"
   },
-  "preferGlobal": true,
+  "files": [
+    "bin",
+    "examples"
+  ],
   "scripts": {
     "clean": "rm -rf node_modules",
     "lint": "standard",
@@ -77,9 +76,10 @@
     "release:github": "conventional-github-releaser -p angular",
     "release:tags": "git push --follow-tags origin HEAD:master",
     "test": "exit 0",
-    "update": "ncu -a",
+    "update": "ncu -u",
     "update:check": "ncu -- --error-level 2"
   },
+  "preferGlobal": true,
   "license": "MIT",
   "commitlint": {
     "extends": [
