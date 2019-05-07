@@ -2,7 +2,7 @@
   "name": "@microlink/mql-cli",
   "description": "CLI for interacting with Microlink Query Language",
   "homepage": "https://nicedoc.io/microlinkhq/mql-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "bin": {
     "mql": "./bin/index.js"
   },
@@ -11,6 +11,12 @@
     "name": "Kiko Beats",
     "url": "https://github.com/Kikobeats"
   },
+  "contributors": [
+    {
+      "name": "ImgBotApp",
+      "email": "ImgBotHelp@gmail.com"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/microlinkhq/mql.git"
