@@ -80,7 +80,7 @@
     "precommit": "lint-staged",
     "prerelease": "npm run update:check && git-authors-cli",
     "pretest": "npm run lint",
-    "release": "git add package.json && standard-version -a",
+    "release": "git-authors-cli && git add package.json && standard-version -a",
     "release:github": "conventional-github-releaser -p angular",
     "release:tags": "git push --follow-tags origin HEAD:master",
     "test": "exit 0",
@@ -110,11 +110,6 @@
         "prettier-standard",
         "git add"
       ]
-    }
-  },
-  "standard-version": {
-    "scripts": {
-      "prechangelog": "git-authors-cli"
     }
   }
 }
