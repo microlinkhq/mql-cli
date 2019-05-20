@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.4](https://github.com/microlinkhq/mql/compare/v1.0.3...v1.0.4) (2019-05-20)
+
+
+### Bug Fixes
+
+* **package:** update update-notifier to version 2.6.0 ([1ba4271](https://github.com/microlinkhq/mql/commit/1ba4271))
+
+
+### Build System
+
+* change git-authors-cli position ([454c815](https://github.com/microlinkhq/mql/commit/454c815))
+* update dependencies ([88de926](https://github.com/microlinkhq/mql/commit/88de926))
+
+
+
 ### [1.0.3](https://github.com/microlinkhq/mql/compare/v1.0.2...v1.0.3) (2019-05-07)
 
 
