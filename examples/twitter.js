@@ -30,10 +30,18 @@ module.exports = async ({ query }) => {
           moments: {
             selector: '.ProfileNav-item--moments .ProfileNav-value',
             attr: 'text'
+          },
+          lists: {
+            selector: '.ProfileNav-item--lists .ProfileNav-value',
+            attr: 'text'
           }
         }
       },
-      avatarUrl: {
+      website: {
+        selector: '.ProfileHeaderCard-urlText > .u-textUserColor',
+        attr: 'title'
+      },
+      avatar: {
         type: 'image',
         selector: '.ProfileAvatar-image',
         attr: 'src'
@@ -47,12 +55,28 @@ module.exports = async ({ query }) => {
         attr: 'text'
       },
       tweets: {
-        selector: 'ol > li',
+        selector: '.tweet:not([data-retweet-id])',
         attr: {
-          id: {
-            selector: '.tweet-timestamp',
-            attr: 'data-conversation-id',
-            type: value => `https://twitter.com/${value}`
+          stats: {
+            selector: '.ProfileTweet-actionList',
+            attr: {
+              replies: {
+                selector:
+                  '.js-actionReply .ProfileTweet-actionCountForPresentation'
+              },
+              retweets: {
+                selector:
+                  '.js-actionRetweet .ProfileTweet-actionCountForPresentation'
+              },
+              likes: {
+                selector:
+                  '.js-actionFavorite .ProfileTweet-actionCountForPresentation'
+              }
+            }
+          },
+          timestamp: {
+            selector: '.tweet-timestamp span',
+            attr: 'data-time-ms'
           },
           text: {
             selector: '.tweet-text',
@@ -67,9 +91,26 @@ module.exports = async ({ query }) => {
     }
   })
 
-  const { stats, tweets, bio, name, avatarUrl } = data
-  const [pinnedTweet, ...restTweets] = tweets
-  return { pinnedTweet, tweets: restTweets, bio, name, avatarUrl, stats }
+  const { website, stats, bio, name, avatar, image: background, tweets } = data
+
+  const mappedTweets = tweets.map(tweet => {
+    tweet.tweetUrl = `https://twitter.com/${tweet.tweetUrl}`
+    return tweet
+  })
+
+  const [pinnedTweet, ...restTweets] = mappedTweets
+
+  return {
+    avatar,
+    background,
+    bio,
+    name,
+    stats,
+    username,
+    website,
+    pinnedTweet,
+    tweets: restTweets
+  }
 }
 
 module.exports.help = 'Get the Twitter profile for any twitter username.'
