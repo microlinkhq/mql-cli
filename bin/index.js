@@ -25,7 +25,7 @@ const cli = require('meow')({
 })
 
 const exitOnError = rawError => {
-  let { stack, message } = cleanError(getError(rawError))
+  const { stack, message } = cleanError(getError(rawError))
 
   console.log()
   console.log(' ', print.label('error', 'red'), chalk.gray(message))
