@@ -6,10 +6,10 @@ module.exports = async ({ query }) => {
   const { username, force = false } = query
 
   if (!username) {
-    throw new TypeError(`You need to pass 'username' as query parameter `)
+    throw new TypeError(`You need to pass 'username' as query parameter.`)
   }
 
-  const { data } = await mql(`https://twitter.com/${username}`, {
+  const { response, data } = await mql(`https://twitter.com/${username}`, {
     force,
     rules: {
       stats: {
@@ -100,21 +100,24 @@ module.exports = async ({ query }) => {
 
   const [pinnedTweet, ...restTweets] = mappedTweets
 
-  return {
-    avatar,
-    background,
-    bio,
-    name,
-    stats,
-    username,
-    website,
-    pinnedTweet,
-    tweets: restTweets
-  }
+  return [
+    response.url,
+    {
+      avatar,
+      background,
+      bio,
+      name,
+      stats,
+      username,
+      website,
+      pinnedTweet,
+      tweets: restTweets
+    }
+  ]
 }
 
-module.exports.help = 'Get the Twitter profile for any twitter username.'
+module.exports.help = 'get Twitter profile for any username.'
 
 module.exports.flags = `
-  --username        Twitter username for fetching profile. [required]
+  --username        twitter username for fetching profile. [required]
 `

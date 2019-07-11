@@ -70,7 +70,7 @@
   },
   "files": [
     "bin",
-    "examples"
+    "recipes"
   ],
   "scripts": {
     "clean": "rm -rf node_modules",
