@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.9](https://github.com/microlinkhq/mql/compare/v1.0.8...v1.0.9) (2019-07-11)
+
+
+### Bug Fixes
+
+* linter ([b9eb175](https://github.com/microlinkhq/mql/commit/b9eb175))
+
+
+### Build System
+
+* refactor ([5d8de3b](https://github.com/microlinkhq/mql/commit/5d8de3b))
+* tweak help ([a58967d](https://github.com/microlinkhq/mql/commit/a58967d))
+
+
+
 ### [1.0.8](https://github.com/microlinkhq/mql/compare/v1.0.7...v1.0.8) (2019-07-11)
 
 
