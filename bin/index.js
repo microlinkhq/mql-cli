@@ -38,7 +38,7 @@ const exitOnError = rawError => {
 }
 
 const main = async () => {
-  const [recipeName] = cli.input
+  const { recipe: recipeName } = cli.flags
 
   if (!recipeName) cli.showHelp()
 

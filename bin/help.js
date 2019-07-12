@@ -19,6 +19,7 @@ Usage
   ${gray('$ mql <example> [flags]')}
 
 Flags
+  ${gray('--recipe            specify the recipe to run.')}
   ${gray('--copy              copy output to clipboard. [default=false]')}
   ${gray(
     "--quiet             don't show additional information. [default=false]"
