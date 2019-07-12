@@ -1,16 +1,12 @@
 'use strict'
 
 const mql = require('@microlink/mql')
+const { toNumber, mapValues } = require('lodash')
 
-module.exports = async ({ query }) => {
-  const { username, force = false } = query
-
-  if (!username) {
-    throw new TypeError(`You need to pass 'username' as query parameter.`)
-  }
+module.exports = async username => {
+  if (username.startsWith('@')) username = username.substring(1)
 
   const { response, data } = await mql(`https://twitter.com/${username}`, {
-    force,
     rules: {
       stats: {
         selector: '.ProfileNav-list',
@@ -93,31 +89,30 @@ module.exports = async ({ query }) => {
 
   const { website, stats, bio, name, avatar, image: background, tweets } = data
 
-  const mappedTweets = tweets.map(tweet => {
+  const author = {
+    username,
+    name,
+    bio,
+    avatar,
+    background,
+    website,
+    stats
+  }
+
+  const allTweets = tweets.map(tweet => {
     tweet.tweetUrl = `https://twitter.com/${tweet.tweetUrl}`
+    tweet.stats = mapValues(tweet.stats, toNumber)
     return tweet
   })
 
-  const [pinnedTweet, ...restTweets] = mappedTweets
+  const [pinnedTweet, ...restTweets] = allTweets
 
   return [
     response.url,
     {
-      avatar,
-      background,
-      bio,
-      name,
-      stats,
-      username,
-      website,
+      author,
       pinnedTweet,
       tweets: restTweets
     }
   ]
 }
-
-module.exports.help = 'get Twitter profile for any username.'
-
-module.exports.flags = `
-  --username        twitter username for fetching profile. [required]
-`

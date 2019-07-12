@@ -4,15 +4,12 @@
 
 const { cleanError, getError } = require('beauty-error')
 const indentString = require('indent-string')
-const existsFile = require('exists-file')
 const clipboardy = require('clipboardy')
 const sizeof = require('object-sizeof')
 const timeSpan = require('time-span')
 const chalk = require('chalk')
-const path = require('path')
 
 const print = require('./print')
-
 const pkg = require('../package.json')
 
 require('update-notifier')({ pkg }).notify()
@@ -45,13 +42,12 @@ const main = async () => {
 
   if (!recipeName) cli.showHelp()
 
-  const filepath = path.resolve(__dirname, '../recipes', `${recipeName}.js`)
-
-  if (!existsFile.sync(filepath)) {
+  let fn
+  try {
+    fn = require(`../recipes/${recipeName}`)
+  } catch (err) {
     throw TypeError(`The recipe '${recipeName}' doesn't exist.`)
   }
-
-  const fn = require(filepath)
 
   if (fn && cli.flags.help) {
     console.log(`\n${indentString(fn.help, 2)}`)
