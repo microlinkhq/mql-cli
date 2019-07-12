@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.10](https://github.com/microlinkhq/mql/compare/v1.0.9...v1.0.10) (2019-07-12)
+
+
+### Build System
+
+* add status flag ([2d8b605](https://github.com/microlinkhq/mql/commit/2d8b605))
+* add status flag ([#10](https://github.com/microlinkhq/mql/issues/10)) ([ed69356](https://github.com/microlinkhq/mql/commit/ed69356))
+
+
+
 ### [1.0.9](https://github.com/microlinkhq/mql/compare/v1.0.8...v1.0.9) (2019-07-11)
 
 
