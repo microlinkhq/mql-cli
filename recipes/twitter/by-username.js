@@ -1,7 +1,7 @@
 'use strict'
 
 const mql = require('@microlink/mql')
-const { toNumber, mapValues } = require('lodash')
+const { tweetRule, toTweets, toStats } = require('./util')
 
 module.exports = async username => {
   if (username.startsWith('@')) username = username.substring(1)
@@ -12,30 +12,39 @@ module.exports = async username => {
         selector: '.ProfileNav-list',
         attr: {
           tweets: {
+            type: 'number',
             selector: '.ProfileNav-item--tweets .ProfileNav-value',
             attr: 'data-count'
           },
           followings: {
+            type: 'number',
             selector: '.ProfileNav-item--following .ProfileNav-value',
             attr: 'data-count'
           },
+          followers: {
+            type: 'number',
+            selector: '.ProfileNav-item--followers .ProfileNav-value',
+            attr: 'data-count'
+          },
           favorites: {
+            type: 'number',
             selector: '.ProfileNav-item--favorites .ProfileNav-value',
             attr: 'data-count'
           },
           moments: {
-            selector: '.ProfileNav-item--moments .ProfileNav-value',
-            attr: 'text'
+            type: 'number',
+            selector: '.ProfileNav-item--moments .ProfileNav-value'
           },
           lists: {
-            selector: '.ProfileNav-item--lists .ProfileNav-value',
-            attr: 'text'
+            type: 'number',
+            selector: '.ProfileNav-item--lists .ProfileNav-value'
           }
         }
       },
       website: {
         selector: '.ProfileHeaderCard-urlText > .u-textUserColor',
-        attr: 'title'
+        attr: 'title',
+        type: 'url'
       },
       avatar: {
         type: 'image',
@@ -50,69 +59,38 @@ module.exports = async username => {
         selector: '.ProfileHeaderCard-nameLink',
         attr: 'text'
       },
-      tweets: {
-        selector: '.tweet:not([data-retweet-id])',
-        attr: {
-          stats: {
-            selector: '.ProfileTweet-actionList',
-            attr: {
-              replies: {
-                selector:
-                  '.js-actionReply .ProfileTweet-actionCountForPresentation'
-              },
-              retweets: {
-                selector:
-                  '.js-actionRetweet .ProfileTweet-actionCountForPresentation'
-              },
-              likes: {
-                selector:
-                  '.js-actionFavorite .ProfileTweet-actionCountForPresentation'
-              }
-            }
-          },
-          timestamp: {
-            selector: '.tweet-timestamp span',
-            attr: 'data-time-ms'
-          },
-          text: {
-            selector: '.tweet-text',
-            attr: 'text'
-          },
-          tweetUrl: {
-            selector: '.tweet-timestamp',
-            attr: 'href'
-          }
-        }
-      }
+      tweets: tweetRule
     }
   })
 
-  const { website, stats, bio, name, avatar, image: background, tweets } = data
+  const {
+    website,
+    stats,
+    bio,
+    name,
+    avatar,
+    image: background,
+    tweets: allTweets
+  } = data
 
-  const author = {
+  const user = {
     username,
     name,
     bio,
     avatar,
     background,
     website,
-    stats
+    stats: toStats(stats)
   }
 
-  const allTweets = tweets.map(tweet => {
-    tweet.tweetUrl = `https://twitter.com/${tweet.tweetUrl}`
-    tweet.stats = mapValues(tweet.stats, toNumber)
-    return tweet
-  })
-
-  const [pinnedTweet, ...restTweets] = allTweets
+  const [pinnedTweet, ...tweets] = toTweets(allTweets)
 
   return [
     response.url,
     {
-      author,
-      pinnedTweet,
-      tweets: restTweets
+      user,
+      tweets,
+      pinnedTweet
     }
   ]
 }
