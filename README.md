@@ -1,11 +1,19 @@
-![](/demo.png)
+<h1 align="center">
+  <img src="https://cdn.microlink.io/banner/mql-cli.png" alt="microlink query language logo">
+</h1>
 
-> CLI for interacting with Microlink Query Language.
+###### [Documentation](docs/api/getting-started/cli) | [Chat](https://microlink.io/chat)
 
 ## Install
 
 ```bash
 npm install @microlink/mql-cli --global
+```
+
+or run it directly:
+
+```bash
+npx @microlink/mql-cli --help
 ```
 
 ## License
