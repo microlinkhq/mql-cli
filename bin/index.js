@@ -65,7 +65,7 @@ main()
 
     if (!cli.flags.quiet) {
       const sourceCodeUrl = print.link(
-        `recipes/${cli.input[0]}`,
+        `recipes/${cli.flags.recipe}`,
         `https://github.com/microlinkhq/mql-cli/blob/master/recipes/${
           cli.input[0]
         }.js`
