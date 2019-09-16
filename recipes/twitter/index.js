@@ -9,4 +9,4 @@ module.exports = async input => {
   return (isTweet ? bystatus : byUsername)(url)
 }
 
-module.exports.help = 'get data from a Twitter URL.'
+module.exports.help = 'Get data from a Twitter URL.'

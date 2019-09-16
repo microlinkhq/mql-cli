@@ -8,15 +8,18 @@ const { description } = require('../package')
 
 const recipesPath = path.resolve(__dirname, '../recipes')
 
-const recipes = fs.readdirSync(recipesPath).map(name => {
-  const example = require(`${recipesPath}/${name}`)
-  return `  ${name.replace('.js', '')}\t${example.help}`
-})
+const recipes = fs
+  .readdirSync(recipesPath)
+  .map(name => {
+    const example = require(`${recipesPath}/${name}`)
+    return `  ${name.replace('.js', '')}\t${example.help}`
+  })
+  .join('\n')
 
-module.exports = `${description}.
+module.exports = () => `${description}.
 
 Usage
-  ${gray('$ mql <example> [flags]')}
+  ${gray('$ mql <flags>')}
 
 Flags
   ${gray('--recipe\tspecify the recipe to run.')}
@@ -25,4 +28,11 @@ Flags
 
 Recipes
 ${gray(recipes)}
+`
+
+module.exports.recipe = (fn, { recipe: recipeName }) => `
+  ${fn.help}
+
+  Usage
+    ${gray(`$ mql --recipe ${recipeName} <url>`)}
 `

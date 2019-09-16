@@ -37,7 +37,6 @@
     "beauty-error": "~1.2.2",
     "chalk": "~2.4.2",
     "clipboardy": "~2.1.0",
-    "indent-string": "~4.0.0",
     "jsome": "~2.5.0",
     "lodash": "~4.17.15",
     "meow": "~5.0.0",

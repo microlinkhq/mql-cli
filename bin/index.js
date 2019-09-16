@@ -3,14 +3,14 @@
 'use strict'
 
 const { cleanError, getError } = require('beauty-error')
-const indentString = require('indent-string')
 const clipboardy = require('clipboardy')
 const sizeof = require('object-sizeof')
 const timeSpan = require('time-span')
 const chalk = require('chalk')
 
-const print = require('./print')
 const pkg = require('../package.json')
+const print = require('./print')
+const help = require('./help')
 
 require('update-notifier')({ pkg }).notify()
 
@@ -18,7 +18,7 @@ const cli = require('meow')({
   pkg,
   autoHelp: false,
   description: false,
-  help: require('./help')
+  help: help()
 })
 
 const exitOnError = rawError => {
@@ -50,8 +50,7 @@ const main = async () => {
   }
 
   if (fn && cli.flags.help) {
-    console.log(`\n${indentString(fn.help, 2)}`)
-    console.log(`  \n  Flags${chalk.gray(indentString(fn.flags, 2))}`)
+    console.log(help.recipe(fn, cli.flags))
     process.exit()
   }
 
