@@ -12,6 +12,6 @@ module.exports = async ({ query }) => {
 module.exports.help = 'get data from Twitter profile/status.'
 
 module.exports.flags = `
-  --username        get Twitter info from an username. [required]
-  --status          get Twitter info from an status URL. [required]
+  --username\tget Twitter info from an username. [required]
+  --status\tget Twitter info from an status URL. [required]
 `
