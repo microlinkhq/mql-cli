@@ -12,7 +12,7 @@ const toTweets = tweets =>
   })
 
 const tweetRule = {
-  selector: '.tweet:not([data-retweet-id])',
+  selectorAll: '.tweet:not([data-retweet-id])',
   attr: {
     stats: {
       selector: '.ProfileTweet-actionList',
