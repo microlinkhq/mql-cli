@@ -3,10 +3,8 @@
 const mql = require('@microlink/mql')
 const { toTweets, tweetRule } = require('./util')
 
-module.exports = async status => {
-  status = status.replace('https://twitter.com/', '')
-
-  const { response, data } = await mql(`https://twitter.com/${status}`, {
+module.exports = async url => {
+  const { response, data } = await mql(url, {
     rules: {
       user: {
         selector: '.permalink-header',

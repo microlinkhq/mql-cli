@@ -56,7 +56,7 @@ const main = async () => {
   }
 
   const end = timeSpan()
-  return [...(await fn({ query: cli.flags })), end()]
+  return [...(await fn(cli.input, cli.flags)), end()]
 }
 
 main()

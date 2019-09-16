@@ -3,10 +3,9 @@
 const mql = require('@microlink/mql')
 const { tweetRule, toTweets, toStats } = require('./util')
 
-module.exports = async username => {
-  if (username.startsWith('@')) username = username.substring(1)
-
-  const { response, data } = await mql(`https://twitter.com/${username}`, {
+module.exports = async url => {
+  const username = url.replace('https://twitter.com/', '')
+  const { response, data } = await mql(url, {
     rules: {
       stats: {
         selector: '.ProfileNav-list',
