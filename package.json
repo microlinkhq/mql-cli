@@ -19,10 +19,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/microlinkhq/mql.git"
+    "url": "git+ssh://git@github.com/microlinkhq/mql-cli.git"
   },
   "bugs": {
-    "url": "https://github.com/microlinkhq/mql/issues"
+    "url": "https://github.com/microlinkhq/mql-cli/issues"
   },
   "keywords": [
     "api",
