@@ -74,7 +74,6 @@
     "clean": "rm -rf node_modules",
     "lint": "standard",
     "postrelease": "npm run release:tags && npm run release:github && ci-publish",
-    "precommit": "lint-staged",
     "prerelease": "npm run update:check && git-authors-cli",
     "pretest": "npm run lint",
     "release": "git-authors-cli && git add package.json && standard-version -a",
