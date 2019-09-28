@@ -5,7 +5,8 @@ const { toTweets, tweetRule } = require('./util')
 
 module.exports = async url => {
   const { response, data } = await mql(url, {
-    rules: {
+    force: true,
+    data: {
       user: {
         selector: '.permalink-header',
         attr: {
