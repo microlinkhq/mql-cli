@@ -6,7 +6,7 @@ const { tweetRule, toTweets, toStats } = require('./util')
 module.exports = async url => {
   const username = url.replace('https://twitter.com/', '')
   const { response, data } = await mql(url, {
-    rules: {
+    data: {
       stats: {
         selector: '.ProfileNav-list',
         attr: {
