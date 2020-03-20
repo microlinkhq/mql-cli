@@ -2,7 +2,7 @@
   "name": "@microlink/mql-cli",
   "description": "CLI for interacting with Microlink Query Language (MQL)",
   "homepage": "https://nicedoc.io/microlinkhq/mql-cli",
-  "version": "1.0.34",
+  "version": "1.0.35",
   "bin": {
     "mql": "./bin/index.js"
   },
