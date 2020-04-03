@@ -40,7 +40,7 @@
     "jsome": "~2.5.0",
     "lodash": "~4.17.15",
     "meow": "~6.1.0",
-    "object-sizeof": "~1.5.2",
+    "object-sizeof": "~1.6.0",
     "pretty-bytes": "~5.3.0",
     "pretty-ms": "~6.0.0",
     "terminal-link": "~2.1.1",
