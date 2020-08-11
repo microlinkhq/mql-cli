@@ -39,7 +39,7 @@
     "clipboardy": "~2.2.0",
     "jsome": "~2.5.0",
     "lodash": "~4.17.15",
-    "meow": "~7.0.0",
+    "meow": "~7.1.0",
     "object-sizeof": "~1.6.0",
     "pretty-bytes": "~5.3.0",
     "pretty-ms": "~7.0.0",
